@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Decode | AI Image Detector</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="glow-container">
+                <div class="glow circle-1"></div>
+                <div class="glow circle-2"></div>
+            </div>
+            <nav>
+                <div class="logo">DESIGN<span>DECODE</span></div>
+                <div class="nav-links">
+                    <a href="#rules">Rules</a>
+                    <a href="#timeline">Timeline</a>
+                    <button id="nav-upload-btn" class="btn-primary">Scan Poster</button>
+                </div>
+            </nav>
+
+            <div class="hero-content">
+                <span class="badge">95 MINUTE CHALLENGE | 3 TWISTS</span>
+                <h1>Expose the <span>Truth</span> Behind the Poster.</h1>
+                <p>Upload your competition entry to verify its authenticity. Our hybrid forensic system detects AI generation at the hex level.</p>
+                <div class="stats-strip">
+                    <div class="stat">
+                        <span class="val">95</span>
+                        <span class="lbl">MINUTES</span>
+                    </div>
+                    <div class="stat">
+                        <span class="val">3</span>
+                        <span class="lbl">TWISTS</span>
+                    </div>
+                    <div class="stat">
+                        <span class="val">0</span>
+                        <span class="lbl">AI TOOLS</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Warning Section -->
+        <section class="warning-section">
+            <div class="warning-card">
+                <div class="warning-icon">⚠️</div>
+                <div class="warning-text">
+                    <h3>AI STRICTLY BANNED</h3>
+                    <p>Midjourney, DALL-E, Firefly, and Stable Diffusion are prohibited. Any detected AI signature results in immediate disqualification.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Submission Section -->
+        <main id="detector-section" class="container">
+            <div class="section-header">
+                <h2>Submission Validator</h2>
+                <p>Verify your entry using the official <strong>AIorNot</strong> engine.</p>
+            </div>
+
+            <div class="upload-zone" id="drop-zone">
+                <div class="upload-content">
+                    <div class="upload-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload-cloud"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
+                    </div>
+                    <p class="upload-text">Upload your poster (JPEG/PNG)</p>
+                    <p class="upload-subtext">Click here to launch the <strong>Official AI Verification Engine</strong></p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Rules Section -->
+        <section id="rules" class="container">
+            <h3>Competition Rules</h3>
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <div class="r-num">01</div>
+                    <h4>No AI Prompts</h4>
+                    <p>Building textures or backgrounds via AI is forbidden.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="r-num">02</div>
+                    <h4>Metadata Integrity</h4>
+                    <p>Must preserve export metadata from your design software.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="r-num">03</div>
+                    <h4>Source Proof</h4>
+                    <p>Winners must provide .psd or .ai source files if flagged.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details & Coordinators -->
+        <section id="event-details" class="container">
+            <div class="event-info-cards">
+                <div class="info-card">
+                    <span class="label">Date</span>
+                    <span class="value">APRIL 17, 2026</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Time</span>
+                    <span class="value">9:00 AM - 10:35 AM</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Venue</span>
+                    <span class="value">CSE LAB</span>
+                </div>
+            </div>
+
+            <div class="timeline-section">
+                <h3>EVENT TIMELINE</h3>
+                <div class="rules-grid">
+                    <div class="rule-card">
+                        <div class="r-num">00'</div>
+                        <h4>Briefing</h4>
+                        <p>Initial project reveal and detailed rules walkthrough.</p>
+                    </div>
+                    <div class="rule-card">
+                        <div class="r-num">45'</div>
+                        <h4>First Twist</h4>
+                        <p>The first design shift is announced. Adapt quickly.</p>
+                    </div>
+                    <div class="rule-card">
+                        <div class="r-num">95'</div>
+                        <h4>Submission</h4>
+                        <p>Final export and authentication via Design Decode.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="coordinators">
+                <h3>HIGH COMMISSION</h3>
+                <div class="coordinator-card">
+                    <div class="coordinator-title">PIT BOSS</div>
+                    <div class="coordinator-name">LEEKITHA SRI</div>
+                </div>
+                
+                <div class="sub-coordinators">
+                    <div class="sub-boss-card">
+                        <span class="label">LOW COMMISSION</span>
+                        <span class="name">SRIRAM</span>
+                    </div>
+                    <div class="sub-boss-card">
+                        <span class="label">LOW COMMISSION</span>
+                        <span class="name">NARESH BALAJI</span>
+                    </div>
+                    <div class="sub-boss-card">
+                        <span class="label">LOW COMMISSION</span>
+                        <span class="name">RAGHUL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="container">
+            <p>&copy; 2026 Design Decode Competition. Built for Creative Excellence.</p>
+        </footer>
+    </div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
