@@ -13,7 +13,7 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "vite": "^8.0.8"
+    "vite": "^6.0.0"
   },
   "dependencies": {
     "exif-js": "^2.3.0",
