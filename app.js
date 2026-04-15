@@ -13,8 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- HIGH-END OGL RIBBONS LOGIC ---
     const ribbonContainer = document.getElementById('ribbons-container');
-    if (ribbonContainer && typeof ogl !== 'undefined') {
+    const isMobile = window.innerWidth <= 768;
+
+    if (ribbonContainer && typeof ogl !== 'undefined' && !isMobile) {
         const { Renderer, Transform, Vec3, Color, Polyline } = ogl;
+        // ... (rest of OGL initialization stays same)
 
         const colors = ['#ffffff', '#e91e63']; 
         const baseSpring = 0.035;
