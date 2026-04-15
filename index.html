@@ -10,26 +10,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Rose Nebula Global Background -->
+    <div class="global-glow-container">
+        <div class="glow-spot spot-1"></div>
+        <div class="glow-spot spot-2"></div>
+        <div class="glow-spot spot-3"></div>
+    </div>
     <div id="app">
         <!-- Hero Section -->
         <header class="hero">
-            <div class="glow-container">
-                <div class="glow circle-1"></div>
-                <div class="glow circle-2"></div>
-            </div>
             <nav>
                 <div class="logo">DESIGN<span>DECODE</span></div>
                 <div class="nav-links">
                     <a href="#rules">Rules</a>
                     <a href="#timeline">Timeline</a>
-                    <button id="nav-upload-btn" class="btn-primary">Scan Poster</button>
+                    <div class="nav-btn-group">
+                        <button id="nav-upload-btn" class="btn-primary">Verify Figma</button>
+                    </div>
                 </div>
             </nav>
 
             <div class="hero-content">
                 <span class="badge">95 MINUTE CHALLENGE | 3 TWISTS</span>
                 <h1>Expose the <span>Truth</span> Behind the Poster.</h1>
-                <p>Upload your competition entry to verify its authenticity. Our hybrid forensic system detects AI generation at the hex level.</p>
+                
+                <!-- Tactical Mouse-Following Eyes -->
+                <div class="eye-tracker-container">
+                    <div class="eye" id="eye-1">
+                        <div class="pupil">
+                            <div class="pupil-glint"></div>
+                        </div>
+                    </div>
+                    <div class="eye" id="eye-2">
+                        <div class="pupil">
+                            <div class="pupil-glint"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- High-End Minimalist Timer -->
+                <div class="minimal-timer">
+                    <div class="timer-stat">
+                        <span id="days">00</span>
+                        <span class="label">Days</span>
+                    </div>
+                    <div class="timer-sep">:</div>
+                    <div class="timer-stat">
+                        <span id="hours">00</span>
+                        <span class="label">Hours</span>
+                    </div>
+                    <div class="timer-sep">:</div>
+                    <div class="timer-stat">
+                        <span id="minutes">00</span>
+                        <span class="label">Mins</span>
+                    </div>
+                    <div class="timer-sep">:</div>
+                    <div class="timer-stat">
+                        <span id="seconds">00</span>
+                        <span class="label">Secs</span>
+                    </div>
+                </div>
+
+                <p>Ensure your competition entry is 100% authentic. Use our official forensic engine partners to verify your Figma designs instantly.</p>
                 <div class="stats-strip">
                     <div class="stat">
                         <span class="val">95</span>
@@ -47,6 +89,57 @@
             </div>
         </header>
 
+        <!-- Hindrance Wheel Section -->
+        <section id="hindrance-section" class="container">
+            <div class="section-header">
+                <h2>The Hindrance Wheel</h2>
+                <p>One spin. One challenge. One twist to your design journey.</p>
+            </div>
+
+            <div class="wheel-container-main">
+                <div id="wheel-locked-state" class="hidden">
+                    <div class="result-card glass-glow">
+                        <div class="badge-locked">HINDRANCE ASSIGNED</div>
+                        <h3 id="locked-result-title">Result Title</h3>
+                        <p id="locked-result-desc">You have already spun the wheel. This is your assigned challenge.</p>
+                        <div class="locked-value" id="locked-value-text">...</div>
+                        <div id="admin-auth-panel" class="hidden" style="margin-top: 2rem;">
+                            <div class="contact-info-card">
+                                <p>If you face any hindrance wheel issues, please contact:</p>
+                                <p><strong>- Sriram</strong> (Webadmin)</p>
+                                <p><strong>- Leekitha Sri</strong> (Pit Boss - Head of Event. Call for any Queries)</p>
+                            </div>
+                            <div class="pink-input-group">
+                                <input type="password" id="admin-key-input" placeholder="Enter Admin Key" />
+                                <button id="admin-key-submit" class="pink-submit-btn">◈ UNLOCK ◈</button>
+                            </div>
+                        </div>
+                        <button class="btn-outline-mini" id="admin-unlock-btn" style="margin-top: 2.5rem;">◈ Request Admin Unlock ◈</button>
+                    </div>
+                </div>
+
+                <div id="wheel-active-state">
+                    <div class="wheel-wrap" id="wheelWrap">
+                        <div class="wheel-rim"></div>
+                        <canvas id="wheel"></canvas>
+                        <div class="ball-el" id="ballEl"></div>
+                        <div class="center-hub">★</div>
+                        <div class="pointer"></div>
+                    </div>
+
+                    <div class="wheel-controls">
+                        <button class="spin-btn" id="spinBtn">◈ SPIN FOR HINDRANCE ◈</button>
+                        <div class="result-panel-mini hidden" id="live-result-panel">
+                            <div class="result-info">
+                                <div class="result-label">assigned hindrance</div>
+                                <div class="result-value" id="resVal">...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Warning Section -->
         <section class="warning-section">
             <div class="warning-card">
@@ -61,18 +154,29 @@
         <!-- Submission Section -->
         <main id="detector-section" class="container">
             <div class="section-header">
-                <h2>Submission Validator</h2>
-                <p>Verify your entry using the official <strong>AIorNot</strong> engine.</p>
+                <h2>Official AI Verification</h2>
+                <p>Select a <strong>Highly Accurate</strong> engine below to verify your Figma asset.</p>
             </div>
 
-            <div class="upload-zone" id="drop-zone">
-                <div class="upload-content">
-                    <div class="upload-icon-wrapper">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-upload-cloud"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
-                    </div>
-                    <p class="upload-text">Upload your poster (JPEG/PNG)</p>
-                    <p class="upload-subtext">Click here to launch the <strong>Official AI Verification Engine</strong></p>
+            <div class="engine-dashboard">
+                <div class="engine-choice primary">
+                    <h3>Hive Moderation</h3>
+                    <p><strong>🔥 Recommended: Highly Accurate & Fastest</strong></p>
+                    <p class="engine-subtext">No login required. Instant scan results.</p>
+                    <button id="hive-scan-btn" class="btn-primary">Verify via Hive (Official)</button>
                 </div>
+                
+                <div class="engine-divider">OR</div>
+
+                <div class="engine-choice secondary">
+                    <h3>AIorNot</h3>
+                    <p>Alternate expert engine for final verification.</p>
+                    <button id="deep-scan-btn" class="btn-outline">Verify via AIorNot</button>
+                </div>
+            </div>
+
+            <div class="rule-hint">
+                💡 <strong>Guide:</strong> Upload your Figma export (JPEG/PNG) safely to these official engines.
             </div>
         </main>
 
@@ -164,6 +268,10 @@
             <p>&copy; 2026 Design Decode Competition. Built for Creative Excellence.</p>
         </footer>
     </div>
+    <!-- OGL Library for Premium ribbons -->
+    <script src="https://unpkg.com/ogl"></script>
+    <div id="ribbons-container"></div>
+    
     <script type="module" src="app.js"></script>
 </body>
 </html>

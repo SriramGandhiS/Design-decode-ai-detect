@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a0603">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>CSEutsav'26 — Roulette Royale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c9a227;
+  --gold-light: #f5d042;
+  --gold-dark: #8b6914;
+  --red: #cc1111;
+  --red-light: #ff4444;
+  --black-slot: #1a1a1a;
+  --green-slot: #007a1f;
+  --bg: #080501;
+  --bg2: #0f0904;
+  --bg3: #160d05;
+  --text: #e8d5a0;
+  --text-muted: #7a6030;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body {
+  width: 100%; min-height: 100vh; overflow-x: hidden;
+  background: var(--bg);
+  font-family: 'Raleway', sans-serif;
+  color: var(--text);
+  touch-action: manipulation;
+}
+body {
+  background:
+    radial-gradient(ellipse 120% 60% at 50% -10%, rgba(201,162,39,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 40% at 50% 100%, rgba(100,30,0,0.3) 0%, transparent 60%),
+    #080501;
+}
+
+/* === FELT TEXTURE === */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.008) 0, rgba(255,255,255,0.008) 1px, transparent 1px, transparent 10px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,0.008) 0, rgba(255,255,255,0.008) 1px, transparent 1px, transparent 10px);
+}
+
+/* === LAYOUT === */
+.app {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 20px 12px 40px;
+  max-width: 430px; margin: 0 auto;
+}
+
+/* === HEADER === */
+.header { text-align: center; width: 100%; margin-bottom: 20px; }
+.event-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 9px; letter-spacing: 5px;
+  color: var(--gold); opacity: 0.8;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.event-name {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 9vw, 40px);
+  font-weight: 900;
+  background: linear-gradient(180deg, #fff8c0 0%, #f5d042 30%, #c9a227 60%, #8b6914 80%, #c9a227 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1px; line-height: 1;
+  filter: drop-shadow(0 2px 8px rgba(201,162,39,0.4));
+}
+.event-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 11px; letter-spacing: 4px;
+  color: var(--text-muted); text-transform: uppercase;
+  margin-top: 6px;
+}
+.divider {
+  width: 90%; height: 1px; margin: 12px auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold-dark), var(--gold-light), var(--gold-dark), transparent);
+  position: relative;
+}
+.divider::before, .divider::after {
+  content: '◆';
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-size: 8px; color: var(--gold-light);
+}
+.divider::before { left: 20%; }
+.divider::after { right: 20%; }
+
+/* === WHEEL CONTAINER === */
+.wheel-wrap {
+  position: relative;
+  width: min(340px, 88vw);
+  height: min(340px, 88vw);
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
+.wheel-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 70%);
+  animation: pulse-glow 3s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+.wheel-rim {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(from 0deg,
+    #b8960c 0deg, #e8c840 20deg, #b8960c 40deg, #e8c840 60deg,
+    #b8960c 80deg, #e8c840 100deg, #b8960c 120deg, #e8c840 140deg,
+    #b8960c 160deg, #e8c840 180deg, #b8960c 200deg, #e8c840 220deg,
+    #b8960c 240deg, #e8c840 260deg, #b8960c 280deg, #e8c840 300deg,
+    #b8960c 320deg, #e8c840 340deg, #b8960c 360deg);
+  box-shadow:
+    0 0 0 3px rgba(201,162,39,0.3),
+    0 0 40px rgba(201,162,39,0.3),
+    0 12px 40px rgba(0,0,0,0.9),
+    inset 0 0 20px rgba(0,0,0,0.5);
+}
+.wheel-rim::after {
+  content: '';
+  position: absolute; inset: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,162,39,0.2);
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+}
+canvas#wheel {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.center-hub {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px; height: 46px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffe066, #c9a227, #6b4e08);
+  border: 2px solid rgba(255,210,50,0.6);
+  box-shadow: 0 0 20px rgba(201,162,39,0.7), 0 4px 12px rgba(0,0,0,0.8), inset 0 2px 4px rgba(255,255,255,0.25);
+  z-index: 20;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.ball-el {
+  position: absolute;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: radial-gradient(circle at 33% 28%, #ffffff, #cccccc 50%, #888888);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.9), inset 0 1px 3px rgba(255,255,255,0.8);
+  z-index: 15;
+  display: none;
+  pointer-events: none;
+  will-change: transform;
+}
+.pointer {
+  position: absolute;
+  top: -16px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 20px solid var(--gold-light);
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
+  z-index: 25;
+}
+.pointer::before {
+  content: '';
+  position: absolute;
+  top: -28px; left: -5px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #ffe066, var(--gold));
+  border: 1px solid rgba(255,220,80,0.5);
+}
+
+/* === RESULT PANEL === */
+.result-panel {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(201,162,39,0.2);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 4px 20px rgba(0,0,0,0.4);
+}
+.result-badge {
+  width: 64px; height: 64px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.4s ease;
+}
+.result-badge.idle {
+  background: linear-gradient(135deg, #1a1000, #2a1800);
+  border: 2px solid rgba(201,162,39,0.3);
+  box-shadow: 0 0 20px rgba(201,162,39,0.1);
+}
+.result-badge.red-win {
+  background: radial-gradient(circle at 40% 35%, #ff4444, #880000);
+  border: 2px solid rgba(255,68,68,0.5);
+  box-shadow: 0 0 30px rgba(255,0,0,0.4), 0 0 60px rgba(255,0,0,0.1);
+  animation: win-pulse 0.6s ease 3;
+}
+.result-badge.black-win {
+  background: radial-gradient(circle at 40% 35%, #555, #111);
+  border: 2px solid rgba(180,180,180,0.3);
+  box-shadow: 0 0 30px rgba(100,100,100,0.3);
+  animation: win-pulse 0.6s ease 3;
+}
+.result-badge.green-win {
+  background: radial-gradient(circle at 40% 35%, #44cc44, #005500);
+  border: 2px solid rgba(68,204,68,0.5);
+  box-shadow: 0 0 30px rgba(0,200,0,0.4), 0 0 60px rgba(0,200,0,0.1);
+  animation: win-pulse 0.6s ease 3;
+}
+@keyframes win-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+.result-num {
+  font-family: 'Cinzel', serif;
+  font-size: 28px; font-weight: 900;
+  color: #fff;
+}
+.result-info { flex: 1; }
+.result-label { font-size: 9px; letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase; }
+.result-value {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(16px, 4.5vw, 22px); font-weight: 900;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin: 2px 0 4px;
+  min-height: 30px;
+  line-height: 1.2;
+}
+.result-color-text { font-size: 10px; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+
+/* === SPIN BUTTON === */
+.spin-btn {
+  width: 100%;
+  height: 62px;
+  border: none; border-radius: 31px;
+  background: linear-gradient(135deg, #8b6914 0%, #c9a227 20%, #f5d042 45%, #e8b800 55%, #f5d042 70%, #c9a227 85%, #8b6914 100%);
+  font-family: 'Cinzel', serif;
+  font-size: 15px; font-weight: 700;
+  letter-spacing: 3px; color: #1a0e00;
+  cursor: pointer;
+  box-shadow:
+    0 6px 30px rgba(201,162,39,0.45),
+    0 2px 8px rgba(0,0,0,0.6),
+    inset 0 1px 2px rgba(255,255,255,0.35),
+    inset 0 -1px 2px rgba(0,0,0,0.3);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-transform: uppercase;
+  position: relative; overflow: hidden;
+  margin-bottom: 20px;
+  -webkit-appearance: none;
+}
+.spin-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,0.22) 50%, transparent 75%);
+  border-radius: 31px;
+}
+.spin-btn:hover:not(:disabled) { transform: translateY(-2px) scale(1.01); box-shadow: 0 10px 40px rgba(201,162,39,0.55), 0 4px 12px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.35); }
+.spin-btn:active:not(:disabled) { transform: translateY(1px) scale(0.99); box-shadow: 0 3px 15px rgba(201,162,39,0.35); }
+.spin-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+/* === STATS BAR === */
+.stats-bar {
+  width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px; margin-bottom: 20px;
+}
+.stat-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,162,39,0.15);
+  border-radius: 10px; padding: 10px 6px;
+  text-align: center;
+}
+.stat-num { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; }
+.stat-num.red { color: var(--red-light); }
+.stat-num.black { color: #aaa; }
+.stat-num.green { color: #44cc44; }
+.stat-label { font-size: 9px; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; margin-top: 3px; }
+
+/* === HISTORY === */
+.history-wrap { width: 100%; }
+.history-title {
+  font-family: 'Cinzel', serif; font-size: 9px;
+  letter-spacing: 4px; color: var(--text-muted);
+  text-transform: uppercase; text-align: center; margin-bottom: 10px;
+}
+.history-row {
+  display: flex; gap: 6px;
+  flex-wrap: wrap; justify-content: center;
+}
+.h-ball {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif; font-size: 11px; font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.7);
+  animation: pop-in 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes pop-in { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.h-ball.red { background: radial-gradient(circle at 38% 33%, #ff5555, #880000); color: #fff; }
+.h-ball.black { background: radial-gradient(circle at 38% 33%, #555, #111); color: #bbb; }
+.h-ball.green { background: radial-gradient(circle at 38% 33%, #44cc44, #004400); color: #fff; }
+
+/* === PARTICLES === */
+#particles { position: fixed; inset: 0; pointer-events: none; z-index: 100; overflow: hidden; }
+.ptcl {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: fall 1.6s ease-out forwards;
+}
+@keyframes fall {
+  0% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: translateY(280px) scale(0.3) rotate(540deg); }
+}
+
+/* === MOBILE SAFE AREA === */
+@media (max-width: 380px) {
+  .app { padding: 14px 10px 30px; }
+  .event-name { font-size: 26px; }
+  .wheel-wrap { width: min(300px, 86vw); height: min(300px, 86vw); }
+}
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .app { padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+}
+</style>
+</head>
+<body>
+<div id="particles"></div>
+
+<div class="app">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="event-eyebrow">★ Grand Casino Night ★</div>
+    <div class="event-name">CSEutsav'26</div>
+    <div class="event-sub">Roulette Royale</div>
+    <div class="divider"></div>
+  </div>
+
+  <!-- WHEEL -->
+  <div class="wheel-wrap" id="wheelWrap">
+    <div class="wheel-glow"></div>
+    <div class="wheel-rim"></div>
+    <canvas id="wheel"></canvas>
+    <div class="ball-el" id="ballEl"></div>
+    <div class="center-hub">★</div>
+    <div class="pointer"></div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-panel">
+    <div class="result-badge idle" id="resBadge">
+      <span class="result-num" id="resNum">—</span>
+    </div>
+    <div class="result-info">
+      <div class="result-label">✦ Last Result ✦</div>
+      <div class="result-value" id="resVal">Place Your Bets</div>
+      <div class="result-color-text" id="resColor">Awaiting Spin</div>
+    </div>
+  </div>
+
+  <!-- BUTTON -->
+  <button class="spin-btn" id="spinBtn" onclick="spinWheel()">◈ SPIN THE WHEEL ◈</button>
+
+  <!-- STATS -->
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-card"><div class="stat-num red" id="statR">0</div><div class="stat-label">Red</div></div>
+    <div class="stat-card"><div class="stat-num black" id="statB">0</div><div class="stat-label">Black</div></div>
+    <div class="stat-card"><div class="stat-num green" id="statG">0</div><div class="stat-label">Pass / Retry</div></div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="history-wrap">
+    <div class="history-title">⬦ Recent Spins ⬦</div>
+    <div class="history-row" id="histRow"></div>
+  </div>
+</div>
+
+<script>
+const NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const COL = {
+  1:'red', 2:'black', 3:'red', 4:'black', 5:'red', 6:'black',
+  7:'red', 8:'black', 9:'red', 10:'black', 11:'green', 12:'green'
+};
+const NAMES = {
+  1: "1. Blindfold coding (5 mins)",
+  2: "2. Bitter gourd shot (fun + punishment 😆)",
+  3: "3. Loud music distraction (headphones)",
+  4: "4. Solve ONLY hardest problem (5 mins)",
+  5: "5. Remove coder (teammate must code)",
+  6: "6. Keyboard swap (distance enforced)",
+  7: "7. Reset code to boilerplate",
+  8: "8. Wear chunky gloves while coding",
+  9: "9. Dramatic dialogue before submission 🎭",
+  10: "10. Sunglasses + extreme brightness mode",
+  11: "11. 🟡 Golden Pass: Transfer hindrance",
+  12: "12. Retry (Better luck next time)"
+};
+
+const N = NUMS.length;
+const STEP = (Math.PI * 2) / N;
+const canvas = document.getElementById('wheel');
+const ctx = canvas.getContext('2d');
+const ballEl = document.getElementById('ballEl');
+const btn = document.getElementById('spinBtn');
+const wrap = document.getElementById('wheelWrap');
+
+let angle = 0, spinning = false;
+let ballA = 0, ballR = 0;
+let history = [], stats = {red:0,black:0,green:0};
+let frameId = null;
+
+function resize() {
+  const size = wrap.offsetWidth;
+  const cSize = Math.round(size * 0.84);
+  canvas.width = cSize; canvas.height = cSize;
+  canvas.style.width = cSize + 'px'; canvas.style.height = cSize + 'px';
+  drawWheel(angle);
+  if (spinning) updateBall(ballA, ballR);
+}
+window.addEventListener('resize', () => { clearTimeout(window._rt); window._rt = setTimeout(resize, 100); });
+
+function drawWheel(a) {
+  const W = canvas.width, cx = W/2, cy = W/2, r = W/2 - 2;
+  ctx.clearRect(0,0,W,W);
+
+  // slots
+  for (let i = 0; i < N; i++) {
+    const sa = a + i*STEP - STEP/2, ea = sa + STEP;
+    const num = NUMS[i], col = COL[num];
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,sa,ea); ctx.closePath();
+    const gx = cx + Math.cos(sa+STEP/2)*r*0.5, gy = cy + Math.sin(sa+STEP/2)*r*0.5;
+    const g = ctx.createRadialGradient(gx,gy,0,cx,cy,r);
+    if (col==='red') { g.addColorStop(0,'#e83030'); g.addColorStop(1,'#6a0000'); }
+    else if (col==='black') { g.addColorStop(0,'#444'); g.addColorStop(1,'#0a0a0a'); }
+    else { g.addColorStop(0,'#22b822'); g.addColorStop(1,'#003a00'); }
+    ctx.fillStyle = g; ctx.fill();
+    ctx.strokeStyle = 'rgba(201,162,39,0.55)'; ctx.lineWidth = 0.8; ctx.stroke();
+  }
+
+  // outer separator ring
+  const ringR = r * 0.84;
+  for (let i = 0; i < N*2; i++) {
+    const ta = a + i*(Math.PI/N);
+    ctx.beginPath();
+    ctx.moveTo(cx + Math.cos(ta)*ringR*0.94, cy + Math.sin(ta)*ringR*0.94);
+    ctx.lineTo(cx + Math.cos(ta)*ringR, cy + Math.sin(ta)*ringR);
+    ctx.strokeStyle = 'rgba(201,162,39,0.5)'; ctx.lineWidth = 1; ctx.stroke();
+  }
+  ctx.beginPath(); ctx.arc(cx,cy,ringR,0,Math.PI*2);
+  ctx.strokeStyle = 'rgba(201,162,39,0.35)'; ctx.lineWidth = 1.5; ctx.stroke();
+
+  // number labels
+  for (let i = 0; i < N; i++) {
+    const ma = a + i*STEP;
+    const tx = cx + Math.cos(ma)*r*0.71, ty = cy + Math.sin(ma)*r*0.71;
+    ctx.save(); ctx.translate(tx,ty); ctx.rotate(ma + Math.PI/2);
+    ctx.font = 'bold 10px Cinzel,serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'rgba(0,0,0,0.5)'; ctx.fillText(NUMS[i],1,1);
+    ctx.fillStyle = COL[NUMS[i]]==='green' ? '#aaffaa' : '#f5d042';
+    ctx.fillText(NUMS[i],0,0); ctx.restore();
+  }
+
+  // spoke decorations
+  const spokeR = r * 0.84;
+  for (let i = 0; i < 8; i++) {
+    const sa = a + i * Math.PI/4;
+    ctx.beginPath();
+    ctx.moveTo(cx + Math.cos(sa)*r*0.44, cy + Math.sin(sa)*r*0.44);
+    ctx.lineTo(cx + Math.cos(sa)*spokeR, cy + Math.sin(sa)*spokeR);
+    const sg = ctx.createLinearGradient(cx,cy,cx+Math.cos(sa)*spokeR,cy+Math.sin(sa)*spokeR);
+    sg.addColorStop(0,'rgba(201,162,39,0)'); sg.addColorStop(0.5,'rgba(201,162,39,0.25)'); sg.addColorStop(1,'rgba(201,162,39,0)');
+    ctx.strokeStyle = sg; ctx.lineWidth = 2.5; ctx.stroke();
+  }
+
+  // inner hub background
+  ctx.beginPath(); ctx.arc(cx,cy,r*0.42,0,Math.PI*2);
+  const hubG = ctx.createRadialGradient(cx,cy,0,cx,cy,r*0.42);
+  hubG.addColorStop(0,'#2a1800'); hubG.addColorStop(1,'#0d0800');
+  ctx.fillStyle = hubG; ctx.fill();
+  ctx.strokeStyle = 'rgba(201,162,39,0.4)'; ctx.lineWidth = 2; ctx.stroke();
+
+  // inner decorative ring
+  ctx.beginPath(); ctx.arc(cx,cy,r*0.38,0,Math.PI*2);
+  ctx.strokeStyle = 'rgba(201,162,39,0.15)'; ctx.lineWidth = 1; ctx.stroke();
+}
+
+function updateBall(bA, bR) {
+  const size = wrap.offsetWidth;
+  const cx = size/2, cy = size/2;
+  const x = cx + Math.cos(bA)*bR - 7;
+  const y = cy + Math.sin(bA)*bR - 7;
+  ballEl.style.left = x+'px'; ballEl.style.top = y+'px';
+}
+
+function spinWheel() {
+  if (spinning) return;
+  spinning = true;
+  btn.disabled = true; btn.textContent = '◈  SPINNING...  ◈';
+  document.getElementById('resVal').textContent = '...';
+  document.getElementById('resColor').textContent = 'Spinning';
+  document.getElementById('resBadge').className = 'result-badge idle';
+  document.getElementById('resNum').textContent = '?';
+
+  const target = Math.floor(Math.random()*N);
+  const size = wrap.offsetWidth;
+  ballR = size * 0.43;
+  ballA = Math.random()*Math.PI*2;
+  ballEl.style.display = 'block';
+  updateBall(ballA, ballR);
+
+  let v = 0.14 + Math.random()*0.07;
+  let bv = -(0.19 + Math.random()*0.07);
+  let f = 0;
+  const FRAMES = 260 + Math.floor(Math.random()*80);
+  const SHRINK_START = 0.55;
+  const MIN_R = size * 0.27;
+  const MAX_R = size * 0.43;
+
+  function tick() {
+    f++;
+    const p = f / FRAMES;
+    const ease = p < 0.65 ? 1 : 1 - Math.pow((p-0.65)/0.35, 2)*0.94;
+    angle += v * ease;
+    ballA += bv * ease;
+    if (p > SHRINK_START) {
+      const sp = (p-SHRINK_START)/(1-SHRINK_START);
+      ballR = MAX_R - (MAX_R-MIN_R)*Math.pow(sp,1.8);
+    }
+    drawWheel(angle);
+    updateBall(ballA, ballR);
+    if (p < 0.75) {
+      document.getElementById('resNum').textContent = NUMS[Math.floor(Math.random()*N)];
+    }
+    if (f < FRAMES) { frameId = requestAnimationFrame(tick); }
+    else { settle(target, size); }
+  }
+  requestAnimationFrame(tick);
+}
+
+function settle(target, size) {
+  const finalA = -angle + target*STEP;
+  const finalR = size*0.27;
+  let sf = 0;
+  function run() {
+    sf++;
+    const t = sf/35, ease = 1-Math.pow(1-t,3);
+    angle += 0.008*(1-t);
+    ballA += (finalA - ballA)*ease*0.08;
+    ballR = ballR + (finalR - ballR)*ease*0.15;
+    drawWheel(angle); updateBall(ballA, ballR);
+    if (sf < 45) { requestAnimationFrame(run); }
+    else {
+      ballA = finalA; ballR = finalR;
+      drawWheel(angle); updateBall(ballA, ballR);
+      finalize(target);
+    }
+  }
+  requestAnimationFrame(run);
+}
+
+function finalize(target) {
+  const num = NUMS[target];
+  const col = COL[num];
+  const badge = document.getElementById('resBadge');
+  const resNum = document.getElementById('resNum');
+  const resVal = document.getElementById('resVal');
+  const resColor = document.getElementById('resColor');
+
+  resNum.textContent = num;
+  resVal.textContent = NAMES[num];
+  resColor.textContent = col==='red'?'🔴 Red Segment':col==='black'?'⚫ Black Segment':(num===11?'🟡 Golden Pass':'🟢 Lucky Retry');
+  badge.className = 'result-badge ' + col + '-win';
+
+  history.unshift({num,col});
+  if (history.length > 12) history.pop();
+  stats[col]++;
+  document.getElementById('statR').textContent = stats.red;
+  document.getElementById('statB').textContent = stats.black;
+  document.getElementById('statG').textContent = stats.green;
+  renderHistory();
+  spawnParticles(col);
+  spinning = false;
+  btn.disabled = false;
+  btn.textContent = '◈ SPIN AGAIN ◈';
+}
+
+function renderHistory() {
+  const row = document.getElementById('histRow');
+  row.innerHTML = history.map(h => `<div class="h-ball ${h.col}">${h.num}</div>`).join('');
+}
+
+function spawnParticles(col) {
+  const cont = document.getElementById('particles');
+  const pal = col==='red'?['#ff4444','#ff8888','#ffcc00']:col==='green'?['#44ff44','#88ff88','#ccff00']:['#ffdd44','#ffee88','#ffffff'];
+  for (let i=0;i<28;i++) {
+    const d = document.createElement('div');
+    d.className = 'ptcl';
+    const s = 3+Math.random()*5, lft = 20+Math.random()*60, top = 20+Math.random()*30;
+    d.style.cssText = `width:${s}px;height:${s}px;background:${pal[i%pal.length]};left:${lft}%;top:${top}%;animation-duration:${1.2+Math.random()*0.8}s;animation-delay:${Math.random()*0.25}s;`;
+    cont.appendChild(d);
+    setTimeout(()=>d.remove(),2400);
+  }
+}
+
+resize();
+</script>
+</body>
+</html>
