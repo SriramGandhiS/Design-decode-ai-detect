@@ -237,13 +237,30 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTimer();
 
     // --- HINDRANCE WHEEL MODULE ---
-    const NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    const COL = { 1:'red', 2:'black', 3:'red', 4:'black', 5:'red', 6:'black', 7:'red', 8:'black', 9:'red', 10:'black', 11:'green', 12:'green' };
+    const NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+    const COL = { 
+        1:'red', 2:'black', 3:'red', 4:'black', 5:'red', 6:'black', 7:'red', 8:'black', 9:'red', 
+        10:'black', 11:'red', 12:'black', 13:'red', 14:'black', 15:'red', 16:'black', 17:'red', 18:'black' 
+    };
     const NAMES = {
-        1: "Blindfold coding (5 mins)", 2: "Bitter gourd shot (punishment 😆)", 3: "Loud music distraction",
-        4: "Solve ONLY hardest problem", 5: "Remove coder (Shift teammate)", 6: "Keyboard swap (Distance)",
-        7: "Reset code to boilerplate", 8: "Wear chunky gloves", 9: "Dramatic dialogue requirement",
-        10: "Sunglasses + High Brightness", 11: "🟡 Golden Pass", 12: "🟢 Retry (Lucky you)"
+        1: "Use in opposite hand",
+        2: "No delete rule - whatever you place stays forever",
+        3: "Font disaster - use worst font",
+        4: "Speed burst - design fast (30-40s)",
+        5: "Use opposite theme",
+        6: "Retro mode (90s design)",
+        7: "Must include meme element",
+        8: "One leg mode - stand on one leg",
+        9: "Sit stand loop - sit/stand every 10s",
+        10: "Move hands in slow motion only",
+        11: "One hand stretched fully",
+        12: "Dance mode - light dancing",
+        13: "News reporter mode - explain actions like live news",
+        14: "Baby voice mode - speak in baby voice",
+        15: "Book balance - hold a ball/book on head",
+        16: "Clap after action - clap after every click",
+        17: "Movie dialogue mode - speak famous dialogues",
+        18: "Slow talk mode - speak extremely slowly"
     };
 
     const canvas = document.getElementById('wheel');
@@ -272,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for(let i=0;i<N;i++) {
             const ma=a+i*STEP; const tx=cx+Math.cos(ma)*r*0.75, ty=cy+Math.sin(ma)*r*0.75;
             wheelCtx.save(); wheelCtx.translate(tx,ty); wheelCtx.rotate(ma+Math.PI/2);
-            wheelCtx.font='bold 12px Inter'; wheelCtx.textAlign='center'; wheelCtx.fillStyle='#fff';
+            wheelCtx.font='bold 10px Inter'; wheelCtx.textAlign='center'; wheelCtx.fillStyle='#fff';
             wheelCtx.fillText(NUMS[i],0,0); wheelCtx.restore();
         }
     }
