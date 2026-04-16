@@ -621,9 +621,19 @@ h1 span {
     margin-bottom: 1rem;
 }
 
-.guide-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+.guide-icon-box {
+    color: var(--magenta);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.guide-icon-box svg {
+    width: 32px;
+    height: 32px;
+    stroke-width: 1.5px;
+    filter: drop-shadow(0 0 8px rgba(233, 30, 99, 0.4));
 }
 
 .guide-card h3 {
