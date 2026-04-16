@@ -397,24 +397,27 @@ canvas#wheel {
 </div>
 
 <script>
-const NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 const COL = {
-  1:'red', 2:'black', 3:'red', 4:'black', 5:'red', 6:'black',
-  7:'red', 8:'black', 9:'red', 10:'black', 11:'green', 12:'green'
+  1:'red', 2:'black', 3:'red', 4:'black', 5:'red', 6:'black', 7:'red', 8:'black', 9:'red', 
+  10:'black', 11:'red', 12:'black', 13:'red', 14:'black', 15:'red'
 };
 const NAMES = {
-  1: "1. Blindfold coding (5 mins)",
-  2: "2. Bitter gourd shot (fun + punishment 😆)",
-  3: "3. Loud music distraction (headphones)",
-  4: "4. Solve ONLY hardest problem (5 mins)",
-  5: "5. Remove coder (teammate must code)",
-  6: "6. Keyboard swap (distance enforced)",
-  7: "7. Reset code to boilerplate",
-  8: "8. Wear chunky gloves while coding",
-  9: "9. Dramatic dialogue before submission 🎭",
-  10: "10. Sunglasses + extreme brightness mode",
-  11: "11. 🟡 Golden Pass: Transfer hindrance",
-  12: "12. Retry (Better luck next time)"
+  1: "1. Sing any one tamil song",
+  2: "2. Talk any one rajini dialogue (loudly)",
+  3: "3. Emotion switch acting (eg: tell I lost my phone with smiling face)",
+  4: "4. Face anyone straight to straight and ask them only question",
+  5: "5. Robot walk in the middle of the participants",
+  6: "6. Wrong answer only with any of your choice person",
+  7: "7. Say alphabet backwards",
+  8: "8. Salute and say any dialogue",
+  9: "9. Say a sentence like a news reporter",
+  10: "10. Fake cry in front of participants for 30s",
+  11: "11. Balance book on head",
+  12: "12. Walk backward and introduce yourself",
+  13: "13. Blame any one participant without reason",
+  14: "14. Act and teach a concept like your favourite staff",
+  15: "15. Slow motion fight scene with a friend"
 };
 
 const N = NUMS.length;
@@ -429,6 +432,15 @@ let angle = 0, spinning = false;
 let ballA = 0, ballR = 0;
 let history = [], stats = {red:0,black:0,green:0};
 let frameId = null;
+let availableIndices = [];
+
+function shuffleIndices() {
+  availableIndices = [...Array(N).keys()];
+  for (let i = availableIndices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [availableIndices[i], availableIndices[j]] = [availableIndices[j], availableIndices[i]];
+  }
+}
 
 function resize() {
   const size = wrap.offsetWidth;
@@ -523,7 +535,8 @@ function spinWheel() {
   document.getElementById('resBadge').className = 'result-badge idle';
   document.getElementById('resNum').textContent = '?';
 
-  const target = Math.floor(Math.random()*N);
+  if (availableIndices.length === 0) shuffleIndices();
+  const target = availableIndices.pop();
   const size = wrap.offsetWidth;
   ballR = size * 0.43;
   ballA = Math.random()*Math.PI*2;
@@ -603,7 +616,7 @@ function finalize(target) {
   spawnParticles(col);
   spinning = false;
   btn.disabled = false;
-  btn.textContent = '◈ SPIN AGAIN ◈';
+  btn.textContent = '◈ SPIN AGAIN (Unlimited) ◈';
 }
 
 function renderHistory() {

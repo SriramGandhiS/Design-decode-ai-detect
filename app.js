@@ -237,30 +237,27 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTimer();
 
     // --- HINDRANCE WHEEL MODULE ---
-    const NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+    const NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
     const COL = { 
         1:'red', 2:'black', 3:'red', 4:'black', 5:'red', 6:'black', 7:'red', 8:'black', 9:'red', 
-        10:'black', 11:'red', 12:'black', 13:'red', 14:'black', 15:'red', 16:'black', 17:'red', 18:'black' 
+        10:'black', 11:'red', 12:'black', 13:'red', 14:'black', 15:'red'
     };
     const NAMES = {
-        1: "Use in opposite hand",
-        2: "No delete rule - whatever you place stays forever",
-        3: "Font disaster - use worst font",
-        4: "Speed burst - design fast (30-40s)",
-        5: "Use opposite theme",
-        6: "Retro mode (90s design)",
-        7: "Must include meme element",
-        8: "One leg mode - stand on one leg",
-        9: "Sit stand loop - sit/stand every 10s",
-        10: "Move hands in slow motion only",
-        11: "One hand stretched fully",
-        12: "Dance mode - light dancing",
-        13: "News reporter mode - explain actions like live news",
-        14: "Baby voice mode - speak in baby voice",
-        15: "Book balance - hold a ball/book on head",
-        16: "Clap after action - clap after every click",
-        17: "Movie dialogue mode - speak famous dialogues",
-        18: "Slow talk mode - speak extremely slowly"
+        1: "Sing any one tamil song",
+        2: "Talk any one rajini dialogue (loudly)",
+        3: "Emotion switch acting (eg: tell I lost my phone with smiling face)",
+        4: "Face anyone straight to straight and ask them only question",
+        5: "Robot walk in the middle of the participants",
+        6: "Wrong answer only with any of your choice person",
+        7: "Say alphabet backwards",
+        8: "Salute and say any dialogue",
+        9: "Say a sentence like a news reporter",
+        10: "Fake cry in front of participants for 30s",
+        11: "Balance book on head",
+        12: "Walk backward and introduce yourself",
+        13: "Blame any one participant without reason",
+        14: "Act and teach a concept like your favourite staff",
+        15: "Slow motion fight scene with a friend"
     };
 
     const canvas = document.getElementById('wheel');
@@ -303,32 +300,64 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function checkSpinLock() {
-        const saved = localStorage.getItem('hindrance');
-        if (saved) {
-            const h = JSON.parse(saved);
-            document.getElementById('wheel-locked-state').classList.remove('hidden');
-            document.getElementById('wheel-active-state').classList.add('hidden');
-            document.getElementById('locked-result-title').innerText = "HINDRANCE: " + h.num;
-            document.getElementById('locked-value-text').innerText = h.name;
+        // Unlimited spins enabled - we no longer hide the active wheel.
+        const history = JSON.parse(localStorage.getItem('hindrance_history') || '[]');
+        if (history.length > 0) {
+            const h = history[0];
+            const livePanel = document.getElementById('live-result-panel');
+            if (livePanel) {
+                livePanel.classList.remove('hidden');
+                document.getElementById('resVal').innerText = h.name;
+            }
+        }
+    }
+
+    let availableHindrances = [];
+
+    function shuffleHindrances() {
+        availableHindrances = [...Array(NUMS.length).keys()];
+        for (let i = availableHindrances.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [availableHindrances[i], availableHindrances[j]] = [availableHindrances[j], availableHindrances[i]];
         }
     }
 
     window.spinWheel = () => {
         if (spinning) return;
         spinning = true; spinBtn.disabled = true;
-        const targetIdx = Math.floor(Math.random()*NUMS.length);
+
+        if (availableHindrances.length === 0) shuffleHindrances();
+        const targetIdx = availableHindrances.pop();
+        const targetAngle = (targetIdx / NUMS.length) * (Math.PI * 2);
+
         const FRAMES = 300; let f = 0;
+        const startAngle = wheelAngle;
+        const totalRotation = 10 * Math.PI + targetAngle; // 5 full spins + target
+
         const loop = () => {
-            f++; const p = f/FRAMES; const ease = 1 - Math.pow(1-p, 3);
-            wheelAngle += 0.2 * (1-ease);
+            f++; const p = f/FRAMES; const ease = 1 - Math.pow(1-p, 4);
+            wheelAngle = startAngle + totalRotation * ease;
             drawWheel(wheelAngle);
             if (f < FRAMES) requestAnimationFrame(loop);
             else { 
                 const num = NUMS[targetIdx];
-                const h = { num, name: NAMES[num] };
-                localStorage.setItem('hindrance', JSON.stringify(h));
-                checkSpinLock();
+                const h = { num, name: NAMES[num], timestamp: Date.now() };
+                
+                // Update History
+                const history = JSON.parse(localStorage.getItem('hindrance_history') || '[]');
+                history.unshift(h);
+                localStorage.setItem('hindrance_history', JSON.stringify(history.slice(0, 50)));
+
+                // Update UI Result Panel
+                const livePanel = document.getElementById('live-result-panel');
+                if (livePanel) {
+                    livePanel.classList.remove('hidden');
+                    document.getElementById('resVal').innerText = h.name;
+                }
+
                 spinning = false;
+                spinBtn.disabled = false;
+                spinBtn.innerText = "◈ SPIN AGAIN ◈";
             }
         };
         loop();
