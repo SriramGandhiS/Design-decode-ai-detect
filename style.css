@@ -590,6 +590,114 @@ h1 span {
     color: var(--text-main);
 }
 
+/* --- Competitor Field Guide --- */
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.guide-card {
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s ease;
+}
+
+.guide-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--magenta);
+    transform: translateY(-5px);
+}
+
+.guide-step {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--magenta);
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.guide-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.guide-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-head);
+}
+
+.guide-card p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+}
+
+/* --- Mission Path --- */
+.glass-strip {
+    background: var(--glass);
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
+
+.path-title {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+}
+
+.path-flow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.p-step {
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.p-step span {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--magenta);
+    margin-bottom: 0.25rem;
+}
+
+.p-arrow {
+    color: var(--magenta);
+    font-weight: 900;
+    opacity: 0.5;
+}
+
+.figma-only-badge {
+    background: rgba(233, 30, 99, 0.15);
+    color: var(--magenta);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border: 1px solid var(--magenta);
+    margin-right: 0.5rem;
+    box-shadow: 0 0 15px rgba(233, 30, 99, 0.2);
+}
+
 .progress-bar {
     height: 8px;
     background: rgba(255,255,255,0.1);
