@@ -53,7 +53,7 @@ body {
 .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 4rem 2rem;
+    padding: 1.5rem 1.5rem;
 }
 
 /* --- Admin Auth Panel --- */
@@ -126,10 +126,10 @@ body {
 /* --- Hero Section --- */
 .hero {
     position: relative;
-    min-height: 80vh;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 1.5rem 2rem;
 }
 
 nav {
@@ -180,7 +180,7 @@ nav {
     align-items: center;
     text-align: center;
     max-width: 800px;
-    margin: 4rem auto 0;
+    margin: 1rem auto 0;
 }
 
 .badge {
@@ -191,7 +191,7 @@ nav {
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 1px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border: 1px solid rgba(255,255,255,0.1);
 }
 
@@ -212,7 +212,7 @@ nav {
 }
 
 .engine-choice.primary h3 {
-    color: var(--accent);
+    color: var(--magenta);
 }
 
 h1 {
@@ -220,7 +220,7 @@ h1 {
     font-size: 5rem;
     font-weight: 900;
     line-height: 1;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     letter-spacing: -2px;
 }
 
@@ -233,7 +233,7 @@ h1 span {
 .hero-content p {
     font-size: 1.25rem;
     color: var(--text-dim);
-    margin-bottom: 3rem;
+    margin-bottom: 1.25rem;
     max-width: 600px;
 }
 
@@ -243,7 +243,7 @@ h1 span {
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-    margin: 4rem 0;
+    margin: 1.25rem 0;
 }
 
 .timer-stat {
@@ -269,7 +269,7 @@ h1 span {
     letter-spacing: 6px;
     color: var(--magenta);
     font-weight: 700;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     opacity: 0.9;
 }
 
@@ -278,7 +278,7 @@ h1 span {
     font-size: 4rem;
     color: rgba(255, 255, 255, 0.1);
     font-weight: 100;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
 }
 
 /* --- Stats Strip --- */
@@ -287,7 +287,7 @@ h1 span {
     gap: 4rem;
     background: var(--glass);
     backdrop-filter: blur(10px);
-    padding: 2rem 4rem;
+    padding: 1rem 2.5rem;
     border-radius: 2rem;
     border: 1px solid var(--glass-border);
 }
@@ -346,7 +346,7 @@ h1 span {
 /* --- Upload Zone --- */
 .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .section-header h2 {
@@ -489,13 +489,13 @@ h1 span {
 .engine-dashboard {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     max-width: 650px;
-    margin: 4rem auto;
+    margin: 2rem auto;
 }
 
 .engine-choice {
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(20px);
@@ -535,7 +535,7 @@ h1 span {
 
 .engine-choice h3 {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     background: linear-gradient(to bottom, #fff, #ccc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -544,7 +544,7 @@ h1 span {
 .engine-choice p {
     font-size: 1rem;
     color: var(--text-dim);
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     line-height: 1.4;
 }
 
@@ -552,12 +552,12 @@ h1 span {
     font-size: 0.85rem !important;
     opacity: 0.5;
     display: block;
-    margin-top: -1rem;
-    margin-bottom: 2rem;
+    margin-top: -0.75rem;
+    margin-bottom: 1.25rem;
 }
 
 .engine-divider {
-    margin: 1.5rem 0;
+    margin: 0.75rem 0;
     font-weight: 700;
     color: var(--text-dim);
     position: relative;
@@ -587,7 +587,7 @@ h1 span {
 }
 
 .btn-text:hover {
-    color: var(--text-bright);
+    color: var(--text-main);
 }
 
 .progress-bar {
@@ -682,7 +682,7 @@ h1 span {
 
 .rule-card {
     background: var(--glass);
-    padding: 2.5rem;
+    padding: 1.5rem 2rem;
     border-radius: 1.5rem;
     border: 1px solid var(--glass-border);
     position: relative;
@@ -726,7 +726,7 @@ h1 span {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
 }
 
 .info-card {
@@ -753,13 +753,13 @@ h1 span {
 }
 
 .timeline-section {
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
 }
 
 #coordinators {
-    padding-top: 4rem;
+    padding-top: 2.5rem;
     border-top: 1px solid var(--glass-border);
-    margin-top: 4rem;
+    margin-top: 2.5rem;
     text-align: center;
 }
 
@@ -797,7 +797,7 @@ h1 span {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -838,9 +838,9 @@ h1 span {
 /* --- Hindrance Wheel --- */
 .wheel-container-main {
     max-width: 500px;
-    margin: 4rem auto;
+    margin: 2rem auto;
     position: relative;
-    padding: 3rem;
+    padding: 2rem;
     background: rgba(255, 255, 255, 0.02);
     border-radius: 2rem;
     border: 1px solid var(--glass-border);
@@ -1043,10 +1043,8 @@ canvas#wheel {
     right: 15%;
 }
 
-}
-
-/* --- Forensic Spotlight & Tactical Reticle --- */
-html, body, button, a, [role='button'] {
+/* --- TargetCursor Style --- */
+html, body, button, a, [role='button'], .cursor-target {
     cursor: none !important;
 }
 
@@ -1057,57 +1055,57 @@ html, body, button, a, [role='button'] {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 9998;
+    z-index: 9980;
     mix-blend-mode: plus-lighter;
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
-#reticle {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.08s linear;
-    mix-blend-mode: difference;
+.target-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  will-change: transform;
 }
 
-.reticle-dot {
-    width: 4px;
-    height: 4px;
-    background: #fff;
-    border-radius: 50%;
+.target-cursor-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform;
 }
 
-.reticle-bracket {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-color: rgba(255, 255, 255, 0.5);
-    border-style: solid;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.target-cursor-corner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border: 2.5px solid #fff;
+  will-change: transform;
+  transition: border-color 0.3s ease;
 }
 
-.reticle-bracket.tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
-.reticle-bracket.tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
-.reticle-bracket.bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
-.reticle-bracket.br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+.corner-tl { transform: translate(-150%, -150%); border-right: none; border-bottom: none; }
+.corner-tr { transform: translate(50%, -150%); border-left: none; border-bottom: none; }
+.corner-br { transform: translate(50%, 50%); border-left: none; border-top: none; }
+.corner-bl { transform: translate(-150%, 50%); border-right: none; border-top: none; }
 
-/* Hover State: Lock On */
-body.cursor-hover #reticle {
-    width: 20px;
-    height: 20px;
-}
-
-body.cursor-hover .reticle-bracket {
+body.cursor-hover .target-cursor-corner {
     border-color: var(--magenta);
-    border-width: 2px;
 }
+
+.cursor-dot { display: none; }
 
 /* --- OGL Ribbons Container --- */
 .ribbons-container {
@@ -1119,20 +1117,6 @@ body.cursor-hover .reticle-bracket {
     pointer-events: none;
     z-index: 9999;
     overflow: hidden;
-}
-
-/* --- High-Precision Fallback Cursor --- */
-.cursor-dot {
-    width: 8px;
-    height: 8px;
-    background: #ffffff;
-    border: 2px solid var(--magenta);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 10000;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgba(233, 30, 99, 0.8);
 }
 
 /* --- High-End OGL Ribbons --- */
@@ -1147,6 +1131,132 @@ body.cursor-hover .reticle-bracket {
     opacity: 0.8;
 }
 
+
+/* --- Winners Circle: Forensic Filmstrip (Redesign) --- */
+#winners-circle {
+    overflow: visible;
+}
+
+.orbit-scene {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    padding: 1rem 0;
+}
+
+.orbit-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1100px;
+    padding: 0 1rem;
+}
+
+/* Base Poster Style */
+.orbit-item {
+    position: relative;
+    flex: 0 0 260px;
+    height: 360px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--plum-mid);
+    border: 1px solid var(--glass-border);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+/* Cinematic Focus Effect */
+.orbit-carousel:hover .orbit-item {
+    opacity: 0.4;
+    filter: blur(2px) grayscale(0.5);
+    transform: scale(0.9);
+}
+
+.orbit-carousel .orbit-item:hover {
+    opacity: 1 !important;
+    filter: blur(0) grayscale(0) !important;
+    transform: scale(1.25) !important;
+    z-index: 100 !important;
+    border-color: var(--magenta);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(233, 30, 99, 0.4);
+}
+
+/* Poster Media */
+.orbit-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.orbit-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Captions Overlay */
+.item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 5, 8, 0.95), transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.orbit-item:hover .item-overlay {
+    opacity: 1;
+}
+
+.item-overlay span {
+    font-size: 0.65rem;
+    color: var(--magenta);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 2px;
+}
+
+.item-overlay h3 {
+    font-size: 1rem;
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+    font-family: var(--font-head);
+}
+
+/* Subtle Scanline Animation on hover */
+.orbit-item::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(233, 30, 99, 0.1), transparent);
+    pointer-events: none;
+    transition: none;
+}
+
+.orbit-item:hover::after {
+    animation: scanline 2s linear infinite;
+}
+
+@keyframes scanline {
+    0% { top: -100%; }
+    100% { top: 100%; }
+}
 
 /* --- MOBILE OPTIMIZATION (Aggressive Fix) --- */
 @media (max-width: 768px) {
@@ -1243,5 +1353,29 @@ body.cursor-hover .reticle-bracket {
 
     .sub-coordinators {
         grid-template-columns: 1fr;
+    }
+
+    /* Winners Circle Filmstrip Mobile fix */
+    .orbit-scene {
+        min-height: auto;
+        padding: 1rem 0;
+    }
+    .orbit-carousel {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .orbit-carousel:hover .orbit-item {
+        opacity: 1;
+        filter: none;
+        transform: none;
+    }
+    .orbit-item {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 120vw;
+        max-height: 500px;
+    }
+    .orbit-item:hover {
+        transform: scale(1.05) !important;
     }
 }
